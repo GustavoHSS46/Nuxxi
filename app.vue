@@ -242,4 +242,5 @@ const Menu = useMenu()
         font-weight: 100;
         font-size: 0.5rem;
     }
-}</style>
+}
+</style>
