@@ -12,6 +12,9 @@
 <style scoped>
 .nav {
     width: 100%;
+    height: 85px;
+    border: 2px solid red;
+    padding-top: 15px;
 
     display: flex;
     align-items: center;
@@ -20,6 +23,13 @@
 .logo {
     letter-spacing: 1.5px;
     color: #44AF69;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .nav {
+        padding-left: 45px;
+        padding-right: 45px;
+    }
 }
 
 @media screen and (min-width: 220px) and (max-width: 767px)  {

@@ -54,6 +54,12 @@ const Menu = useMenu()
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.icon:hover {
+    cursor: pointer;
+    opacity: .5;
+    transition: all 380ms cubic-bezier(1, 0.5, 0.8, 1);
+}
+
 /* Ultrawide Monitors */
 @media screen and (min-width: 1921px) and (max-width: 2560px) {
     .container {
@@ -65,7 +71,6 @@ const Menu = useMenu()
     h1 {
         font-family: "Bebas Neue", cursive !important;
         font-size: 4rem;
-        color: red;
     }
 
     h2 {

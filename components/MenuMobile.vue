@@ -1,20 +1,27 @@
 <template>
-    <div class="bg"></div>
+    <div class="bg">
+        <video autoplay muted loop id="myVideo">
+            <source src="../assest/Dots.webm" type="video/webm">
+        </video>
+    </div>
     <div class="containerMenu">
-        <div class="column close">
-            <Icon name="ion:close-sharp" size="4rem" @click="Menu.toggleMenu" />
-        </div>
-        <div class="column">
-            <Icon name="ion:cart" size="2.5rem" />
-            <h2>Cart</h2>
-        </div>
-        <div class="column">
-            <Icon name="ion:search" size="2.5rem" />
-            <h2>Search</h2>
-        </div>
-        <div class="column">
-            <Icon name="material-symbols:account-circle-sharp" size="2.5rem" />
-            <h2>My Account</h2>
+        <div class="content">
+
+            <div class="column close">
+                <Icon name="ion:close-sharp" size="4rem" @click="Menu.toggleMenu" />
+            </div>
+            <div class="column">
+                <Icon name="ion:cart" size="2.5rem" />
+                <h2>Cart</h2>
+            </div>
+            <div class="column">
+                <Icon name="ion:search" size="2.5rem" />
+                <h2>Search</h2>
+            </div>
+            <div class="column">
+                <Icon name="material-symbols:account-circle-sharp" size="2.5rem" />
+                <h2>My Account</h2>
+            </div>
         </div>
     </div>
 </template>
@@ -30,17 +37,25 @@ const Menu = useMenu()
 .bg {
     width: 100%;
     height: 100%;
-    
+
     position: absolute;
-    z-index: 1;
-
-    background-image: radial-gradient(
-        rgba(255, 255, 255, 1) 9%,
-        transparent 9%,
-    ); 
-
-    background-position: 0% 0%;
+    z-index: 0;
+    background-color: black;
 }
+
+.bg video {
+    width: 100%;
+    height: 100%;
+    opacity: .35;
+    object-fit: cover;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
 .containerMenu {
     width: 100vw;
     height: 100vh;
