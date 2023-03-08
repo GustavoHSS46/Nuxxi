@@ -6,42 +6,83 @@
                     <h1>Nuxxi</h1>
                 </div>
                 <div class="inputs">
-                    <input type="text" required>
+                    <input type="text" v-model="name" min="6" max="35" required>
                     <label for="text">Your Name</label>
                 </div>
                 <div class="inputs">
-                    <input type="email" required>
+                    <input type="email" v-model="email" required>
                     <label for="email">Your email</label>
                 </div>
                 <div class="inputs">
+                    <input type="password" v-model="password" min="6" max="35"  required>
                     <label for="password">Password</label>
-                    <input type="password" required>
                 </div>
                 <div class="inputs">
+                    <input type="password" v-model="comfirmPassword" min="6" max="35" required>
                     <label for="password">Password Again</label>
-                    <input type="password" required>
                 </div>
                 <div class="inputs red">
-                    <label for="button">Enter</label>
-                    <input type="button">
+                    <label for="button">Register</label>
+                    <input type="button" @click="register()">
                 </div>
                 <div class="register">
                     <NuxtLink to="/login">
                         <p>You already have a account?</p>
                     </NuxtLink>
                 </div>
+                <div class="icons">
+                    <Icon name="logos:google-icon" size="3rem"/>
+                    <Icon name="logos:facebook" size="3rem"/>
+                    <div class="invert">
+                        <Icon  name="radix-icons:github-logo" size="3rem"/>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+
+const password = ref("")
+const comfirmPassword = ref("")
+const email = ref("")
+const name = ref("")
+
+const register = () => {
+    if (comfirmPassword.value != password.value) {
+        password.value = ""
+        comfirmPassword.value = ""
+        alert("Please enter the same password")
+        return
+    } else {
+        createUserWithEmailAndPassword(getAuth(), email.value, password.value, name.value)
+        .then((data) => {
+            console.log("logged in successfully")
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+}
+const singInWithGoogle = () => {
 
 }
 </script>
 
 <style scoped>
+.icons {
+    margin-top: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    width: 90%;
+
+}
+
 p {
     margin-top: 15px;
     color: white;
@@ -53,7 +94,7 @@ p {
     transform: scale(1.5);
 
     position: absolute;
-    top: 8%; 
+    top: 4%; 
 }
 
 .content {
@@ -106,7 +147,8 @@ input {
     border-radius: 16px;
 
     padding: 15px;
-    font-size: 1rem;
+    padding-top: 35px;
+    font-size: 1.5rem;
 }
 
 .inputs {
@@ -116,6 +158,7 @@ input {
     width: 90%;
 
     position: relative;
+    transition: 450ms ease;
 }
 
 label {
@@ -123,11 +166,26 @@ label {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #44AF69;
+    color: #A30B37;
     font-size: 16px;
     font-family: "Bebas neue", sans-serif;
     font-weight: 400;
     font-size: 1.5rem;
+    transition: 450ms ease;
+}
+
+.inputs input:focus,
+.inputs input:valid {
+    border: 3px solid #44AF69;
+    font-family: "Bebas neue", sans-serif;
+}
+
+.inputs input:focus ~ label,
+.inputs input:valid ~ label {
+    top: 5%;
+    left: 0;
+    transform: scale(0.7);
+    color: #44AF69 
 }
 
 .red > label {
@@ -167,10 +225,10 @@ label {
     .logo {
     letter-spacing: 1.5px;
     color: #44AF69;
-    transform: scale(1.2);
+    transform: scale(0.6);
 
     position: absolute;
-    top: 2%; 
+    top: 0; 
 }
 }
 

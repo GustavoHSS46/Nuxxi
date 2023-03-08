@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
     modules: [
         'nuxt-icon',
-        '@pinia/nuxt'
+    '@pinia/nuxt'
     ],
     pinia: {
         autoImports: [
