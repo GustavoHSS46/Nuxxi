@@ -6,8 +6,8 @@
                     <h1>Nuxxi</h1>
                 </div>
                 <div class="inputs">
-                    <input type="text" required>
-                    <label for="text">Your Name</label>
+                    <input type="email" required>
+                    <label for="email">Your Email</label>
                 </div>
                 <div class="inputs">
                     <label for="password">Password</label>
@@ -22,6 +22,11 @@
                         <p>You still don't have a account?</p>
                     </NuxtLink>
                 </div>
+                <div class="icons">
+                    <Icon name="logos:google-icon" size="3rem"/>
+                    <Icon name="logos:facebook" size="3rem"/>
+                    <Icon name="radix-icons:github-logo" size="3rem"/>
+                </div>
             </form>
         </div>
     </div>
@@ -34,9 +39,29 @@ export default {
 </script>
 
 <style scoped>
+
+.icons {
+    margin-top: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    width: 90%;
+
+}
+
+a {
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 16px;
+    font-family: 'Bebas neue';
+}
+
 p {
     margin-top: 15px;
     color: white;
+    text-decoration: none;
 }
 
 .logo {
