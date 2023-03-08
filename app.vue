@@ -1,15 +1,15 @@
 <template>
+    <div class="blur" v-if="Menu.isOpen"></div>
     <div class="container">
-        <Navbar/>
-        <NuxtPage/>
-        <Footer/>
+        <Navbar />
+        <NuxtPage />
+        <Footer />
     </div>
 </template>
 
-<script>
-    export default {
-        
-    }
+<script setup lang="ts">
+import { useMenu } from './stores/isOpen'
+const Menu = useMenu()  
 </script>
 
 <style>
@@ -30,6 +30,8 @@
     align-items: center;
     justify-content: center;
     background-color: #F1EDEE;
+
+    overflow-x: hidden !important;
 }
 
 .container {
@@ -39,13 +41,27 @@
     justify-content: space-between;
     height: 100%;
     width: 100%;
+
+    overflow-x: hidden !important;
+}
+
+.blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Ultrawide Monitors */
 @media screen and (min-width: 1921px) and (max-width: 2560px) {
     .container {
         width: 1920px;
+        overflow-x: hidden;
+
     }
+
     h1 {
         font-family: "Bebas Neue", cursive !important;
         font-size: 4rem;
@@ -82,6 +98,7 @@
     .container {
         width: 1440px;
     }
+
     h1 {
         font-family: "Bebas Neue", cursive !important;
         font-size: 4rem;
@@ -117,6 +134,7 @@
     .container {
         width: 1024px;
     }
+
     h1 {
         font-family: "Bebas Neue", cursive !important;
         font-size: 4rem;
@@ -184,7 +202,7 @@
 }
 
 /* Phones Monitors */
-@media screen and (min-width: 220px) and (max-width: 767px) {
+@media screen and (max-width: 767px) {
     .container {
         width: 100%;
         padding-left: 10px;
@@ -219,5 +237,4 @@
         font-weight: 100;
         font-size: 0.5rem;
     }
-}
-</style>
+}</style>

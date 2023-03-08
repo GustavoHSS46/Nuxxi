@@ -3,13 +3,10 @@
         <Icon name="ph:shopping-bag-light" size="4rem" />
     </div>
     <div class="iconsMobile">
-        <Icon name="heroicons-solid:menu-alt-3" size="3rem" />
+        <IconMobile/>
     </div>
 </template>
 
-<script setup>
-
-</script>
 <style scoped>
 
 .iconsMobile {
