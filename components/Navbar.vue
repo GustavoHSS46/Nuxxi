@@ -13,7 +13,6 @@
 .nav {
     width: 100%;
     height: 85px;
-    border: 2px solid red;
     padding-top: 15px;
 
     display: flex;
