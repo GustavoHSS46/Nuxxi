@@ -1,7 +1,8 @@
 <template>
     <div class="container">
-        <h1>Navbar Pikka</h1>
+        <Navbar/>
         <NuxtPage/>
+        <Footer/>
     </div>
 </template>
 
@@ -28,13 +29,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #F1EDEE;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100%;
     width: 100%;
 }
@@ -43,7 +45,6 @@
 @media screen and (min-width: 1921px) and (max-width: 2560px) {
     .container {
         width: 1920px;
-        border: 2px solid red;
     }
     h1 {
         font-family: "Bebas Neue", cursive !important;
@@ -80,7 +81,6 @@
 @media screen and (min-width: 1441px) and (max-width: 1920px) {
     .container {
         width: 1440px;
-        border: 2px solid green;
     }
     h1 {
         font-family: "Bebas Neue", cursive !important;
@@ -116,7 +116,6 @@
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
     .container {
         width: 1024px;
-        border: 2px solid blue;
     }
     h1 {
         font-family: "Bebas Neue", cursive !important;
@@ -152,7 +151,6 @@
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     .container {
         width: 100%;
-        border: 2px solid purple;
     }
 
     h1 {
@@ -191,7 +189,6 @@
         width: 100%;
         padding-left: 10px;
         padding-right: 10px;
-        border: 2px solid yellow;
     }
 
     h1 {
