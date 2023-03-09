@@ -6,7 +6,7 @@
                     <h1>Nuxxi</h1>
                 </div>
                 <div class="inputs">
-                    <input type="text" v-model="name" min="6" max="35" required>
+                    <input type="text" v-model="displayName" min="6" max="35" required>
                     <label for="text">Your Name</label>
                 </div>
                 <div class="inputs">
@@ -14,13 +14,14 @@
                     <label for="email">Your email</label>
                 </div>
                 <div class="inputs">
-                    <input type="password" v-model="password" min="6" max="35"  required>
+                    <input type="password" v-model="password" min="6" max="35" required>
                     <label for="password">Password</label>
                 </div>
                 <div class="inputs">
                     <input type="password" v-model="comfirmPassword" min="6" max="35" required>
                     <label for="password">Password Again</label>
                 </div>
+                <h2 v-if="errMsg">{{ errMsg }}</h2>
                 <div class="inputs red">
                     <label for="button">Register</label>
                     <input type="button" @click="register()">
@@ -31,10 +32,10 @@
                     </NuxtLink>
                 </div>
                 <div class="icons">
-                    <Icon name="logos:google-icon" size="3rem"/>
-                    <Icon name="logos:facebook" size="3rem"/>
+                    <Icon name="logos:google-icon" size="3rem" />
+                    <Icon name="logos:facebook" size="3rem" />
                     <div class="invert">
-                        <Icon  name="radix-icons:github-logo" size="3rem"/>
+                        <Icon name="radix-icons:github-logo" size="3rem" />
                     </div>
                 </div>
             </form>
@@ -43,12 +44,14 @@
 </template>
 
 <script setup>
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+
 
 const password = ref("")
 const comfirmPassword = ref("")
 const email = ref("")
-const name = ref("")
+const displayName = ref("")
+const errMsg = ref("")
 
 const register = () => {
     if (comfirmPassword.value != password.value) {
@@ -57,13 +60,37 @@ const register = () => {
         alert("Please enter the same password")
         return
     } else {
-        createUserWithEmailAndPassword(getAuth(), email.value, password.value, name.value)
-        .then((data) => {
-            console.log("logged in successfully")
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        const auth = getAuth()
+        createUserWithEmailAndPassword(auth, email.value, password.value)
+            .then((data) => {
+                updateProfile(auth.currentUser, {
+                    displayName: displayName.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+                })
+                console.log(auth.currentUser)
+                return navigateTo('/login')
+            })
+            .catch((err) => {
+                console.log(err)
+                switch (err.code) {
+                    case "auth/email-already-in-use":
+                        errMsg.value = "Email already in use"
+                        break
+                    case "auth/invalid-email":
+                        errMsg.value = "Invalid email"
+                        break
+                    case "auth/user-disabled":
+                        errMsg.value = "User disabled"
+                        break
+                    case "auth/user-not-found":
+                        errMsg.value = "User not found"
+                        break
+                    case "auth/wrong-password":
+                        errMsg.value = "Wrong password"
+                        break
+                    default:
+                        errMsg.value = "Something went wrong"
+                }
+            })
     }
 }
 const singInWithGoogle = () => {
@@ -72,13 +99,17 @@ const singInWithGoogle = () => {
 </script>
 
 <style scoped>
+h2 {
+    color: white !important;
+}
+
 .icons {
     margin-top: 25px;
 
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+
     width: 90%;
 
 }
@@ -86,6 +117,8 @@ const singInWithGoogle = () => {
 p {
     margin-top: 15px;
     color: white;
+    font-family: "Bebas neue", sans-serif;
+    letter-spacing: 1px;
 }
 
 .logo {
@@ -94,7 +127,7 @@ p {
     transform: scale(1.5);
 
     position: absolute;
-    top: 4%; 
+    top: 4%;
 }
 
 .content {
@@ -129,7 +162,7 @@ p {
     justify-content: center;
     align-items: center;
 
-    background-color:#2B2D42;
+    background-color: #2B2D42;
     height: 80%;
     width: 50%;
 
@@ -180,18 +213,19 @@ label {
     font-family: "Bebas neue", sans-serif;
 }
 
-.inputs input:focus ~ label,
-.inputs input:valid ~ label {
+.inputs input:focus~label,
+.inputs input:valid~label {
     top: 5%;
     left: 0;
     transform: scale(0.7);
-    color: #44AF69 
+    color: #44AF69
 }
 
-.red > label {
+.red>label {
     color: white;
 }
-.red > input {
+
+.red>input {
     background-color: #A30B37;
 }
 
@@ -222,14 +256,15 @@ label {
     .container {
         width: 1024px;
     }
-    .logo {
-    letter-spacing: 1.5px;
-    color: #44AF69;
-    transform: scale(0.6);
 
-    position: absolute;
-    top: 0; 
-}
+    .logo {
+        letter-spacing: 1.5px;
+        color: #44AF69;
+        transform: scale(0.6);
+
+        position: absolute;
+        top: 0;
+    }
 }
 
 /* Tablets Monitors */
