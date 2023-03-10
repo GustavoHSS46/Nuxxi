@@ -1,19 +1,25 @@
 <template>
-    <div>
-        <h1 v-if="user">Home {{ user }}</h1>
-        <h1 v-else>Connect Your Account {{ user }}</h1>
+    <Navbar />
+    <div class="contentMain">
+        <CardCarrosel />
+        <h2>{{ userId }}</h2>
     </div>
 </template>
 
 <script setup>
-import { getAuth } from "firebase/auth"
-
-
-const auth = getAuth()
-const user = auth.currentUser;
-
+import { useStorage } from "@vueuse/core";
+let userId = useStorage('macaco', '')
 </script>
 
 <style scoped>
+.contentMain {
+    height: 100%;
+    width: 100%;;
 
+    padding-top: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 </style>

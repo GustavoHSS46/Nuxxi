@@ -10,8 +10,8 @@
                     <label for="text">Your Name</label>
                 </div>
                 <div class="inputs">
-                    <input type="email" v-model="email" required>
-                    <label for="email">Your email</label>
+                    <input type="text" v-model="email" required>
+                    <label for="text">Your email</label>
                 </div>
                 <div class="inputs">
                     <input type="password" v-model="password" min="6" max="35" required>
@@ -53,11 +53,17 @@ const email = ref("")
 const displayName = ref("")
 const errMsg = ref("")
 
+const { $swal } = useNuxtApp()
+
 const register = () => {
     if (comfirmPassword.value != password.value) {
         password.value = ""
         comfirmPassword.value = ""
-        alert("Please enter the same password")
+        $swal.fire({
+            title: "Password don't match",
+            icon: 'error',
+            text: 'Try again',
+        })
         return
     } else {
         const auth = getAuth()
@@ -66,35 +72,65 @@ const register = () => {
                 updateProfile(auth.currentUser, {
                     displayName: displayName.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
                 })
-                console.log(auth.currentUser)
-                return navigateTo('/login')
-            })
-            .catch((err) => {
-                console.log(err)
+                const user = getAuth().currentUser;
+                let name = user.displayName
+                $swal.fire({
+                    title: "Welcome " + displayName.value,
+                    icon: 'success',
+                    text: 'We are happy to see you again',
+                    confirmButtonColor: '#44AF69',
+                    confirmButtonText: 'Go to Home',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        return navigateTo('/login')
+                    }
+                })
+            }).catch((err) => {
                 switch (err.code) {
                     case "auth/email-already-in-use":
-                        errMsg.value = "Email already in use"
+                        $swal.fire({
+                            title: 'Email already in use',
+                            icon: 'error',
+                            text: 'Try again',
+                        })
                         break
                     case "auth/invalid-email":
-                        errMsg.value = "Invalid email"
+                        $swal.fire({
+                            title: 'Invalid email',
+                            icon: 'error',
+                            text: 'Try again',
+                        })
                         break
                     case "auth/user-disabled":
-                        errMsg.value = "User disabled"
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'User disabled',
+                            text: 'Try again',
+                        })
                         break
                     case "auth/user-not-found":
-                        errMsg.value = "User not found"
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'User not found',
+                            text: 'Try again',
+                        })
                         break
                     case "auth/wrong-password":
-                        errMsg.value = "Wrong password"
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'Wrong password',
+                            text: 'Try again',
+                        })
                         break
                     default:
-                        errMsg.value = "Something went wrong"
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'Something wrong',
+                            text: 'Try again',
+                        })
                 }
             })
     }
-}
-const singInWithGoogle = () => {
-
 }
 </script>
 

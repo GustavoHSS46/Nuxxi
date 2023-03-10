@@ -6,14 +6,13 @@
                     <h1>Nuxxi</h1>
                 </div>
                 <div class="inputs">
-                    <input type="email" v-model="email" required>
-                    <label for="email">Your Email</label>
+                    <input type="text" v-model="email" required>
+                    <label for="text">Your Email</label>
                 </div>
                 <div class="inputs">
                     <input type="password" v-model="password" required>
                     <label for="password">Password</label>
                 </div>
-                <h2 v-if="errMsg">{{ errMsg }}</h2>
                 <div class="inputs red">
                     <label for="button">Enter</label>
                     <input type="button" @click="singIn()">
@@ -36,42 +35,68 @@
 <script setup>
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 
+const { $swal } = useNuxtApp()
+
 const password = ref("")
 const email = ref("")
-const errMsg = ref("")
 
-const auth = getAuth()
+
+
 const singIn = () => {
-    signInWithEmailAndPassword(auth, email.value, password.value)
+    signInWithEmailAndPassword(getAuth(), email.value, password.value)
         .then(() => {
-            return navigateTo('/')
-        })
-        .catch((err) => {
-            console.log(err)
-            switch (err.code) {
-                case "auth/email-already-in-use":
-                    errMsg.value = "Email already in use"
-                    break
-                case "auth/invalid-email":
-                    errMsg.value = "Invalid email"
-                    break
-                case "auth/user-disabled":
-                    errMsg.value = "User disabled"
-                    break
-                case "auth/user-not-found":
-                    errMsg.value = "User not found"
-                    break
-                case "auth/wrong-password":
-                    errMsg.value = "Wrong password"
-                    break
-                default:
-                    errMsg.value = "Something went wrong"
-            }
-        })
-}
-const singInWithGoogle = () => {
-
-}
+            const user = getAuth().currentUser;
+            let name = user.displayName
+            $swal.fire({
+                title: "Welcome " + name,
+                icon: 'success',
+                text: 'We are happy to see you again',
+                confirmButtonColor: '#44AF69',
+                confirmButtonText: 'Go to Home',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    return navigateTo('/')
+                }
+            })}).catch((err) => {
+                console.log(err)
+                switch (err.code) {
+                    case "auth/invalid-email":
+                        $swal.fire({
+                            title: 'Invalid email',
+                            icon: 'error',
+                            text: 'Try again',
+                        })
+                        break
+                    case "auth/user-disabled":
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'User disabled',
+                            text: 'Try again',
+                        })
+                        break
+                    case "auth/user-not-found":
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'User not found',
+                            text: 'Try again',
+                        })
+                        break
+                    case "auth/wrong-password":
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'Wrong password',
+                            text: 'Try again',
+                        })
+                        break
+                    default:
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'Something wrong',
+                            text: 'Try again',
+                        })
+                }
+            })
+        }
 </script>
 
 <style scoped>
@@ -265,4 +290,5 @@ label {
         height: 100vh;
         border-radius: 0;
     }
-}</style>
+}
+</style>

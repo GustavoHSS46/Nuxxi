@@ -1,16 +1,19 @@
 <template>
     <div class="iconsDesktop">
-        <Icon name="material-symbols:account-circle-outline" size="3rem" />
+        <Profile />
         <Icon name="material-symbols:search-sharp" size="3rem" />
         <Icon name="ph:shopping-bag" size="3rem" />
     </div>
     <div class="iconsMobile">
-        <IconMobile/>
+        <IconMobile />
     </div>
 </template>
 
-<style scoped>
+<script setup lang="ts">
 
+</script>
+
+<style scoped>
 .iconsDesktop {
     height: 100%;
     width: 30%;
@@ -21,6 +24,10 @@
 
 .iconsMobile {
     display: none;
+}
+
+.loading {
+    color: rgb(68, 175, 105) !important;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
