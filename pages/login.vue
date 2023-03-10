@@ -6,16 +6,16 @@
                     <h1>Nuxxi</h1>
                 </div>
                 <div class="inputs">
-                    <input type="email" required>
-                    <label for="email">Your Email</label>
+                    <input type="text" v-model="email" required>
+                    <label for="text">Your Email</label>
                 </div>
                 <div class="inputs">
+                    <input type="password" v-model="password" required>
                     <label for="password">Password</label>
-                    <input type="password" required>
                 </div>
                 <div class="inputs red">
                     <label for="button">Enter</label>
-                    <input type="button">
+                    <input type="button" @click="singIn()">
                 </div>
                 <div class="register">
                     <NuxtLink to="/register">
@@ -23,45 +23,99 @@
                     </NuxtLink>
                 </div>
                 <div class="icons">
-                    <Icon name="logos:google-icon" size="3rem"/>
-                    <Icon name="logos:facebook" size="3rem"/>
-                    <Icon name="radix-icons:github-logo" size="3rem"/>
+                    <Icon name="logos:google-icon" size="3rem" />
+                    <Icon name="logos:facebook" size="3rem" />
+                    <Icon name="radix-icons:github-logo" size="3rem" />
                 </div>
             </form>
         </div>
     </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 
-}
+const { $swal } = useNuxtApp()
+
+const password = ref("")
+const email = ref("")
+
+
+
+const singIn = () => {
+    signInWithEmailAndPassword(getAuth(), email.value, password.value)
+        .then(() => {
+            const user = getAuth().currentUser;
+            let name = user.displayName
+            $swal.fire({
+                title: "Welcome " + name,
+                icon: 'success',
+                text: 'We are happy to see you again',
+                confirmButtonColor: '#44AF69',
+                confirmButtonText: 'Go to Home',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    return navigateTo('/')
+                }
+            })}).catch((err) => {
+                console.log(err)
+                switch (err.code) {
+                    case "auth/invalid-email":
+                        $swal.fire({
+                            title: 'Invalid email',
+                            icon: 'error',
+                            text: 'Try again',
+                        })
+                        break
+                    case "auth/user-disabled":
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'User disabled',
+                            text: 'Try again',
+                        })
+                        break
+                    case "auth/user-not-found":
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'User not found',
+                            text: 'Try again',
+                        })
+                        break
+                    case "auth/wrong-password":
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'Wrong password',
+                            text: 'Try again',
+                        })
+                        break
+                    default:
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'Something wrong',
+                            text: 'Try again',
+                        })
+                }
+            })
+        }
 </script>
 
 <style scoped>
-
 .icons {
     margin-top: 25px;
 
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+
     width: 90%;
 
-}
-
-a {
-    text-decoration: none;
-    letter-spacing: 1px;
-    font-size: 16px;
-    font-family: 'Bebas neue';
 }
 
 p {
     margin-top: 15px;
     color: white;
-    text-decoration: none;
+    font-family: "Bebas neue", sans-serif;
+    letter-spacing: 1px;
 }
 
 .logo {
@@ -70,7 +124,7 @@ p {
     transform: scale(1.5);
 
     position: absolute;
-    top: 15%; 
+    top: 15%;
 }
 
 .content {
@@ -105,7 +159,7 @@ p {
     justify-content: center;
     align-items: center;
 
-    background-color:#2B2D42;
+    background-color: #2B2D42;
     height: 80%;
     width: 50%;
 
@@ -123,7 +177,8 @@ input {
     border-radius: 16px;
 
     padding: 15px;
-    font-size: 1rem;
+    padding-top: 35px;
+    font-size: 1.5rem;
 }
 
 .inputs {
@@ -133,6 +188,7 @@ input {
     width: 90%;
 
     position: relative;
+    transition: 450ms ease;
 }
 
 label {
@@ -140,17 +196,33 @@ label {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #44AF69;
+    color: #A30B37;
     font-size: 16px;
     font-family: "Bebas neue", sans-serif;
     font-weight: 400;
     font-size: 1.5rem;
+    transition: 450ms ease;
 }
 
-.red > label {
+.inputs input:focus,
+.inputs input:valid {
+    border: 3px solid #44AF69;
+    font-family: "Bebas neue", sans-serif;
+}
+
+.inputs input:focus~label,
+.inputs input:valid~label {
+    top: 5%;
+    left: 0;
+    transform: scale(0.7);
+    color: #44AF69
+}
+
+.red>label {
     color: white;
 }
-.red > input {
+
+.red>input {
     background-color: #A30B37;
 }
 
@@ -180,6 +252,15 @@ label {
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
     .container {
         width: 1024px;
+    }
+
+    .logo {
+        letter-spacing: 1.5px;
+        color: #44AF69;
+        transform: scale(0.6);
+
+        position: absolute;
+        top: 0;
     }
 }
 

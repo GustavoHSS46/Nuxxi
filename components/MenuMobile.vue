@@ -18,19 +18,42 @@
                 <Icon name="ion:search" size="2.5rem" />
                 <h2>Search</h2>
             </div>
-            <div class="column">
+            <div v-if="isConected" @click="Account()" class="column">
                 <Icon name="material-symbols:account-circle-sharp" size="2.5rem" />
-                <h2>My Account</h2>
+                <h2>{{ Username }}</h2>
+            </div>
+            <div v-else class="column">
+                <Icon name="material-symbols:account-circle-sharp" size="2.5rem" />
+                <h2>Not Conected</h2>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { getAuth } from "firebase/auth";
 import { useMenu } from '../stores/isOpen'
 
 const Menu = useMenu()
+let Username = ""
+let isConected = false;
 
+const auth = getAuth();
+const user = auth.currentUser;
+if (user) {
+    Username = user.displayName!;
+    isConected = true;
+} else {
+    Username = "not signed in"
+}
+
+function Account() {
+    if (user) {
+        return navigateTo('/account')
+    } else {
+        alert("Not signed in")
+    }
+}
 </script>
 
 <style  scoped>

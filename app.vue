@@ -1,7 +1,6 @@
 <template>
     <div class="blur" v-if="Menu.isOpen"></div>
     <div class="container">
-        <Navbar />
         <NuxtPage />
         <Footer />
     </div>
@@ -10,6 +9,7 @@
 <script setup lang="ts">
 import { useMenu } from './stores/isOpen'
 const Menu = useMenu()  
+
 </script>
 
 <style>
