@@ -19,7 +19,7 @@ const Conected = useConexion()
 Conected.connect()
 
 let Username = useStorage('name', '').value
-let photo = useStorage('profilePic', '').value
+let photo = useStorage('profilePic', 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg').value
 
 let Show = useStorage('isConnected', false).value
 

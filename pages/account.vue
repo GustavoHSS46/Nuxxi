@@ -18,7 +18,7 @@ import { useConexion } from '../stores/isConnect'
 
 const Conected = useConexion()
 Conected.connect()
-let photoURL = useStorage('profilePic', '')
+let photoURL = useStorage('profilePic', 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg')
 let Username = useStorage('name', '')
 let Show = useStorage('isConnected', false)
 
