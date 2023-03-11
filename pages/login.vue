@@ -34,7 +34,11 @@
 
 <script setup>
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { useConexion } from '../stores/isConnect'
 
+
+const Conected = useConexion()
+Conected.logOut()
 const { $swal } = useNuxtApp()
 
 const password = ref("")
@@ -47,6 +51,8 @@ const singIn = () => {
         .then(() => {
             const user = getAuth().currentUser;
             let name = user.displayName
+            console.log(name)
+
             $swal.fire({
                 title: "Welcome " + name,
                 icon: 'success',
@@ -57,46 +63,47 @@ const singIn = () => {
                 if (result.isConfirmed) {
                     return navigateTo('/')
                 }
-            })}).catch((err) => {
-                console.log(err)
-                switch (err.code) {
-                    case "auth/invalid-email":
-                        $swal.fire({
-                            title: 'Invalid email',
-                            icon: 'error',
-                            text: 'Try again',
-                        })
-                        break
-                    case "auth/user-disabled":
-                        $swal.fire({
-                            icon: 'error',
-                            title: 'User disabled',
-                            text: 'Try again',
-                        })
-                        break
-                    case "auth/user-not-found":
-                        $swal.fire({
-                            icon: 'error',
-                            title: 'User not found',
-                            text: 'Try again',
-                        })
-                        break
-                    case "auth/wrong-password":
-                        $swal.fire({
-                            icon: 'error',
-                            title: 'Wrong password',
-                            text: 'Try again',
-                        })
-                        break
-                    default:
-                        $swal.fire({
-                            icon: 'error',
-                            title: 'Something wrong',
-                            text: 'Try again',
-                        })
-                }
             })
-        }
+        }).catch((err) => {
+            console.log(err)
+            switch (err.code) {
+                case "auth/invalid-email":
+                    $swal.fire({
+                        title: 'Invalid email',
+                        icon: 'error',
+                        text: 'Try again',
+                    })
+                    break
+                case "auth/user-disabled":
+                    $swal.fire({
+                        icon: 'error',
+                        title: 'User disabled',
+                        text: 'Try again',
+                    })
+                    break
+                case "auth/user-not-found":
+                    $swal.fire({
+                        icon: 'error',
+                        title: 'User not found',
+                        text: 'Try again',
+                    })
+                    break
+                case "auth/wrong-password":
+                    $swal.fire({
+                        icon: 'error',
+                        title: 'Wrong password',
+                        text: 'Try again',
+                    })
+                    break
+                default:
+                    $swal.fire({
+                        icon: 'error',
+                        title: 'Something wrong',
+                        text: 'Try again',
+                    })
+            }
+        })
+}
 </script>
 
 <style scoped>
