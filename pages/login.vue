@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { getAuth, signInWithEmailAndPassword  } from "firebase/auth"
 import { useConexion } from '../stores/isConnect'
 
 
@@ -51,7 +51,6 @@ const singIn = () => {
         .then(() => {
             const user = getAuth().currentUser;
             let name = user.displayName
-            console.log(name)
 
             $swal.fire({
                 title: "Welcome " + name,

@@ -69,10 +69,10 @@ const register = () => {
         const auth = getAuth()
         createUserWithEmailAndPassword(auth, email.value, password.value)
             .then((data) => {
-                updateProfile(auth.currentUser, {
-                    displayName: displayName.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
-                })
                 const user = getAuth().currentUser;
+                updateProfile(auth.currentUser, {
+                    displayName: displayName.value, photoURL: "https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg"
+                })
                 let name = user.displayName
                 $swal.fire({
                     title: "Welcome " + displayName.value,

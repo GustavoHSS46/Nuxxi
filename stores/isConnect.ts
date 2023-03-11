@@ -6,7 +6,7 @@ export const useConexion = definePiniaStore('connected', {
     state: () => ({
         isConnected: useLocalStorage('isConnected', false),
         name: useStorage('name', ''),
-        profilePic: useStorage('profilePic', '')
+        profilePic: useStorage('profilePic', 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg')
     }),
     actions: {
         connect() {
@@ -26,19 +26,16 @@ export const useConexion = definePiniaStore('connected', {
         logOut() {
             const auth = getAuth();
             auth.signOut().then(() => {
-                console.log("sign out nigga")
                 this.initialize()
-                console.log("logged out")
             })
         },
         initialize() {
-            console.log("logged out123123123")
             useLocalStorage('macaco', '', { mergeDefaults: true }).value = null
             useLocalStorage('name', '', { mergeDefaults: true }).value = null
-            useLocalStorage('profilePic', 'default', { mergeDefaults: true }).value = null
+            useLocalStorage('profilePic', 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg', { mergeDefaults: true }).value = null
             useLocalStorage('isConnected', false, { mergeDefaults: true }).value = null
             this.name = ''
-            this.profilePic = ''
+            this.profilePic = 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg'
             this.isConnected = false
         }
     },
