@@ -6,7 +6,8 @@ export const useConexion = definePiniaStore('connected', {
     state: () => ({
         isConnected: useLocalStorage('isConnected', false),
         name: useStorage('name', ''),
-        profilePic: useStorage('profilePic', 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg')
+        profilePic: useStorage('profilePic', 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg'),
+        isLoading: true
     }),
     actions: {
         connect() {
@@ -19,9 +20,10 @@ export const useConexion = definePiniaStore('connected', {
                 useLocalStorage('profilePic', this.profilePic, { mergeDefaults: true })
                 useLocalStorage('isConnected', this.isConnected, { mergeDefaults: true })
                 useLocalStorage('name', this.name, { mergeDefaults: true })
-            } else {
-                this.initialize()
             }
+        },
+        Loading() {
+            this.isLoading = false
         },
         logOut() {
             const auth = getAuth();

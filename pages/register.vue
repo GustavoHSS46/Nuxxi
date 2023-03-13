@@ -68,7 +68,7 @@ const register = () => {
     } else {
         const auth = getAuth()
         createUserWithEmailAndPassword(auth, email.value, password.value)
-            .then((data) => {
+            .then(() => {
                 const user = getAuth().currentUser;
                 updateProfile(auth.currentUser, {
                     displayName: displayName.value, photoURL: "https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg"
