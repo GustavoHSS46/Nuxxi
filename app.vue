@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { useMenu } from './stores/isOpen'
-const Menu = useMenu()  
+const Menu = useMenu()
 
 </script>
 

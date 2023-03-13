@@ -49,7 +49,8 @@ if (user) {
 
 function Account() {
     if (user) {
-        return navigateTo('/account')
+        Menu.toggleMenu()
+        navigateTo('/account')
     } else {
         alert("Not signed in")
     }

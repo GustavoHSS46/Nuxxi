@@ -2,24 +2,28 @@
     <Navbar />
     <div class="contentMain">
         <CardCarrosel />
-        <h2>{{ userId }}</h2>
+        <Cards />
     </div>
 </template>
 
 <script setup>
-import { useStorage } from "@vueuse/core";
-let userId = useStorage('macaco', '')
 </script>
 
 <style scoped>
 .contentMain {
     height: 100%;
-    width: 100%;;
+    width: 100%;
 
-    padding-top: 15px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .contentMain {
+        padding-left: 45px;
+        padding-right: 45px;
+    }
 }
 </style>

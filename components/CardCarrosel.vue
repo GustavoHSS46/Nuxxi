@@ -14,7 +14,7 @@
 <style scoped>
 .content {
     height: 40%;
-    width: 96%;
+    width: 100%;
     background-color: none;
 
     position: relative;
@@ -38,7 +38,6 @@
 }
 
 .card > * {
-    border: 1px solid rgb(255, 0, 0);
     width: 50%;
     height: 100%;
 }

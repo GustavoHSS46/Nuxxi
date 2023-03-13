@@ -1,6 +1,6 @@
 <template>
     <div class="nav">
-        <div class="logo">
+        <div @click="Home()" class="logo">
             <h1>Nuxxi</h1>
         </div>
         <NavButton/>
@@ -8,13 +8,17 @@
 </template>
 
 <script setup>
+
+function Home() {
+    navigateTo('/')
+}
+
 </script>
 
 <style scoped>
 .nav {
     width: 100%;
     height: 85px;
-    padding-top: 15px;
 
     box-shadow: 0px 1px 4px #000000;
 
@@ -25,6 +29,8 @@
 .logo {
     letter-spacing: 1.5px;
     color: rgb(68, 175, 105);
+    user-select: none;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -35,7 +41,7 @@
     }
 }
 
-@media screen and (min-width: 220px) and (max-width: 767px)  {
+@media screen and (max-width: 767px)  {
     .nav {
         height: 10%;
         box-shadow: 0px 0px 0px #000000;
