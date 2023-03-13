@@ -2,7 +2,7 @@
     <div class="mainProfile">
         <Icon v-if="Conected.isLoading" class="loading" name="svg-spinners:180-ring" />
         <div v-else class="info">
-            <Transition name="nested" :duration="550" v-if="Show" appear>
+            <Transition name="nested" :duration="700" v-if="Show" appear>
                 <div @click="Account()" class="user">
                     <h3 class="inner">{{ Username }}</h3>
                     <div class="icon outer">
@@ -119,12 +119,12 @@ button {
 
 .nested-enter-from .inner,
 .nested-leave-to .inner {
-  transform: translateX(30px);
+  transform: translateX(80px);
   opacity: 0;
 }
 
 .nested-enter-active .inner {
-  transition-delay: 0.25s;
+  transition-delay: 0.35s;
 }
 
 .nested-enter-active .outer,
@@ -134,7 +134,7 @@ button {
 
 .nested-enter-from .outer,
 .nested-leave-to .outer {
-  transform: translatey(30px);
+  transform: translateY(30px);
   opacity: 0;
 }
 

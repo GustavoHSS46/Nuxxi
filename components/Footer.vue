@@ -3,9 +3,6 @@
         <div class="logo">
             <h1>Footer</h1>
         </div>
-        <div class="icons">
-            <Icon name="ph:shopping-bag-light" />
-        </div>
     </div>
 </template>
 

@@ -11,6 +11,7 @@ export const useConexion = definePiniaStore('connected', {
     }),
     actions: {
         connect() {
+            this.isLoading = true
             const auth = getAuth();
             const user = auth.currentUser;
             if (user) {
