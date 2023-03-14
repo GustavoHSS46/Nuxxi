@@ -19,7 +19,6 @@
     flex-direction: column;
     align-items: center;
 
-    gap: 10px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {

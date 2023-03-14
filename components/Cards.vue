@@ -36,6 +36,11 @@
 </script>
 
 <style scoped>
+
+img {
+    filter: invert(100%);
+}
+
 .content {
     width: 100%;
     height: 30%;
