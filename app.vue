@@ -23,15 +23,15 @@ const Menu = useMenu()
 }
 
 #__nuxt {
-    height: 100vh;
+    height: 210vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #F1EDEE;
+    background-color: #fff;
 
-    overflow-x: hidden !important;
+    overflow-x: hidden;
 }
 
 .container {
@@ -136,6 +136,11 @@ const Menu = useMenu()
 
 /* HD Monitors */
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
+
+    #__nuxt {
+        height: 320vh;
+    }
+
     .container {
         width: 1024px;
     }

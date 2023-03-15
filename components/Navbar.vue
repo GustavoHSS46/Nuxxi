@@ -20,7 +20,7 @@ function Home() {
     width: 100%;
     height: 85px;
 
-    box-shadow: 0px 1px 4px #000000;
+    box-shadow: 0px 0px 0px #000000;
 
     display: flex;
     align-items: center;
@@ -37,14 +37,12 @@ function Home() {
     .nav {
         padding-left: 45px;
         padding-right: 45px;
-        box-shadow: 0px 0px 0px #000000;
     }
 }
 
 @media screen and (max-width: 767px)  {
     .nav {
-        height: 10%;
-        box-shadow: 0px 0px 0px #000000;
+        height: 3%;
     }
 }
 </style>

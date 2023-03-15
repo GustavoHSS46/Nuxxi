@@ -43,7 +43,8 @@ img {
 
 .content {
     width: 100%;
-    height: 30%;
+    height: 35%;
+
 
     display: flex;
     flex-direction: column;
@@ -110,20 +111,33 @@ img {
 @media screen and (min-width: 1921px) and (max-width: 2560px) {
     .content {
         flex-direction: row;
-        height: 40%;
+        height: 10%;
+    }
+
+    .cardsContainer {
+        height: 100%;
     }
 }
 
 @media screen and (min-width: 1441px) and (max-width: 1920px) {
     .content {
         flex-direction: row;
+        height: 15%;
+    }
+
+    .cardsContainer {
+        height: 100%;
     }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
     .content {
         flex-direction: row;
-        height: 45%;
+        height: 15%;
+    }
+
+    .cardsContainer {
+        height: 100%;
     }
 }
 </style>
