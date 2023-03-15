@@ -17,10 +17,11 @@
 .contentMain {
     height: 100%;
     width: 100%;
-
+    
     gap: 25px;
 
     overflow: hidden;
+
 
     display: flex;
     flex-direction: column;
