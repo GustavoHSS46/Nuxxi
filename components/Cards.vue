@@ -86,7 +86,7 @@ img {
 }
 
 .yellow {
-    background-color: #EEC643;
+    background-color: #eeb243;
 }
 
 .blue {
