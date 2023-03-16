@@ -6,16 +6,16 @@
                     <h1>Nuxxi</h1>
                 </div>
                 <div class="inputs">
-                    <input type="text" v-model="email" required>
-                    <label for="text">Your Email</label>
+                    <input type="text" id="email" v-model="email" required>
+                    <label for="email">Your Email</label>
                 </div>
                 <div class="inputs">
-                    <input type="password" v-model="password" required>
+                    <input type="password" id="password" v-model="password" required>
                     <label for="password">Password</label>
                 </div>
                 <div class="inputs red">
+                    <input type="button" id="button" @click="singIn()">
                     <label for="button">Enter</label>
-                    <input type="button" @click="singIn()">
                 </div>
                 <div class="register">
                     <NuxtLink to="/register">
@@ -230,6 +230,14 @@ label {
 
 .red>input {
     background-color: #A30B37;
+}
+
+.red input:focus~label,
+.red input:valid~label {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
 }
 
 

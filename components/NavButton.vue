@@ -8,9 +8,6 @@
             <Icon name="ph:shopping-bag" size="3rem" />
         </div>
     </div>
-    <div class="iconsMobile">
-        <IconMobile />
-    </div>
 </template>
 
 <script setup lang="ts">
@@ -77,8 +74,5 @@
         display: none;
     }
 
-    .iconsMobile {
-        display: block;
-    }
 }
 </style>

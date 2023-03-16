@@ -25,7 +25,7 @@ import { useStorage } from "@vueuse/core";
 import { useConexion } from '../stores/isConnect'
 const Conected = useConexion()
 Conected.connect()
-setTimeout(Conected.Loading, 2000)
+Conected.Loading()
 
 
 let Username = useStorage('name', '').value
@@ -59,7 +59,7 @@ function Login() {
 }
 
 .loading {
-    color: rgb(68, 175, 105) !important;
+    color: #44af69 !important;
 }
 
 .mainProfile {
@@ -114,28 +114,42 @@ button {
 
 .nested-enter-active .inner,
 .nested-leave-active .inner {
-  transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .nested-enter-from .inner,
 .nested-leave-to .inner {
-  transform: translateX(80px);
-  opacity: 0;
+    transform: translateX(80px);
+    opacity: 0;
 }
 
 .nested-enter-active .inner {
-  transition-delay: 0.35s;
+    transition-delay: 0.35s;
 }
 
 .nested-enter-active .outer,
 .nested-leave-active .outer {
-  transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .nested-enter-from .outer,
 .nested-leave-to .outer {
-  transform: translateY(30px);
-  opacity: 0;
+    transform: translateY(30px);
+    opacity: 0;
 }
 
+@media screen and (max-width: 767px) {
+    .inner {
+        display: none;
+    }
+
+    .user {
+        justify-content: center;
+    }
+    button {
+        width: 100%;
+        height: 60%;
+        background-color: #44af69;
+    }
+}
 </style>

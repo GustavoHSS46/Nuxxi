@@ -44,5 +44,12 @@ function Home() {
     .nav {
         height: 3%;
     }
+
+    .logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 </style>
