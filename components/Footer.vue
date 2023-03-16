@@ -15,6 +15,7 @@ export default {
 <style scoped>
 .nav {
     width: 100%;
+    margin-bottom: 12vh;
 }
 
 @media screen and (min-width: 220px) and (max-width: 767px) {

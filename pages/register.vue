@@ -6,25 +6,25 @@
                     <h1>Nuxxi</h1>
                 </div>
                 <div class="inputs">
-                    <input type="text" v-model="displayName" min="6" max="35" required>
-                    <label for="text">Your Name</label>
+                    <input type="text" id="name" v-model="displayName" min="6" max="35" required>
+                    <label for="name">Your Name</label>
                 </div>
                 <div class="inputs">
-                    <input type="text" v-model="email" required>
-                    <label for="text">Your email</label>
+                    <input type="text" id="email" v-model="email" required>
+                    <label for="email">Your email</label>
                 </div>
                 <div class="inputs">
-                    <input type="password" v-model="password" min="6" max="35" required>
+                    <input type="password" id="password" v-model="password" min="6" max="35" required>
                     <label for="password">Password</label>
                 </div>
                 <div class="inputs">
-                    <input type="password" v-model="comfirmPassword" min="6" max="35" required>
-                    <label for="password">Password Again</label>
+                    <input type="password" id="rePassword" v-model="comfirmPassword" min="6" max="35" required>
+                    <label for="rePassword">Password Again</label>
                 </div>
                 <h2 v-if="errMsg">{{ errMsg }}</h2>
                 <div class="inputs red">
+                    <input type="button" id="button" @click="register()">
                     <label for="button">Register</label>
-                    <input type="button" @click="register()">
                 </div>
                 <div class="register">
                     <NuxtLink to="/login">
@@ -71,7 +71,7 @@ const register = () => {
             .then(() => {
                 const user = getAuth().currentUser;
                 updateProfile(auth.currentUser, {
-                    displayName: displayName.value, photoURL: "https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg"
+                    displayName: displayName.value, photoURL: "https://www.pngkey.com/png/full/448-4483798_download-icon-user-png-clipart-computer-icons-user.png"
                 })
                 let name = user.displayName
                 $swal.fire({
@@ -257,6 +257,7 @@ label {
     color: #44AF69
 }
 
+
 .red>label {
     color: white;
 }
@@ -265,6 +266,13 @@ label {
     background-color: #A30B37;
 }
 
+.red input:focus~label,
+.red input:valid~label {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
 
 /* Ultrawide Monitors */
 @media screen and (min-width: 1921px) and (max-width: 2560px) {

@@ -1,12 +1,15 @@
 <template>
     <Navbar />
     <div class="contentMain">
-        <CardCarrosel />
+        <CardCarrosel class="carrosel" />
         <Cards />
-        <Products title="Books"/>
-        <Products title="videoGames"/>
-        <Products title="Smartphones"/>
-        <Products title="Shoes"/>
+        <Products title="Books" />
+        <Products title="videoGames" />
+        <Products title="Smartphones" />
+        <Products title="Shoes" />
+    </div>
+    <div class="menuContainer">
+        <MenuMobile />
     </div>
 </template>
 
@@ -17,8 +20,7 @@
 .contentMain {
     height: 100%;
     width: 100%;
-    
-    gap: 25px;
+
 
     overflow: hidden;
 
@@ -29,10 +31,30 @@
     justify-content: space-around;
 }
 
+.menuContainer {
+    display: none;
+    width: 100vw;
+    height: 10vh;
+    background-color: none;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     .contentMain {
         padding-left: 45px;
         padding-right: 45px;
+        height: 100vh;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .menuContainer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        display: block;
+    }
+    .contentMain {
+        height: 210vh;
     }
 }
 </style>

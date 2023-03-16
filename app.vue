@@ -1,15 +1,12 @@
 <template>
-    <div class="blur" v-if="Menu.isOpen"></div>
     <div class="container">
         <NuxtPage />
         <Footer />
     </div>
+
 </template>
 
 <script setup lang="ts">
-import { useMenu } from './stores/isOpen'
-const Menu = useMenu()
-
 </script>
 
 <style>
@@ -23,12 +20,10 @@ const Menu = useMenu()
 }
 
 #__nuxt {
-    height: 210vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     background-color: #fff;
 
     overflow-x: hidden;
@@ -38,11 +33,8 @@ const Menu = useMenu()
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     height: 100%;
     width: 100%;
-
-    overflow-x: hidden !important;
 }
 
 .blur {
@@ -59,6 +51,9 @@ const Menu = useMenu()
     opacity: .5;
     transition: all 380ms cubic-bezier(1, 0.5, 0.8, 1);
 }
+
+
+
 
 /* Ultrawide Monitors */
 @media screen and (min-width: 1921px) and (max-width: 2560px) {
@@ -247,5 +242,6 @@ const Menu = useMenu()
         font-weight: 100;
         font-size: 0.5rem;
     }
+
 }
 </style>
