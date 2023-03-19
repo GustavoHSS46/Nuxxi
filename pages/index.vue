@@ -9,7 +9,7 @@
         <Products title="Shoes" />
     </div>
     <div class="menuContainer">
-        <MenuMobile />
+        <MenuMobile Homecolor="#44af69" Cartcolor="black"/>
     </div>
 </template>
 
@@ -24,6 +24,7 @@
 
     overflow: hidden;
 
+    gap: 5px;
 
     display: flex;
     flex-direction: column;
@@ -53,6 +54,7 @@
         left: 0;
         display: block;
     }
+
     .contentMain {
         height: 210vh;
     }

@@ -3,7 +3,6 @@
         <NuxtPage />
         <Footer />
     </div>
-
 </template>
 
 <script setup lang="ts">
@@ -51,9 +50,6 @@
     opacity: .5;
     transition: all 380ms cubic-bezier(1, 0.5, 0.8, 1);
 }
-
-
-
 
 /* Ultrawide Monitors */
 @media screen and (min-width: 1921px) and (max-width: 2560px) {
@@ -243,5 +239,11 @@
         font-size: 0.5rem;
     }
 
+    .menuContainer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        display: block;
+    }
 }
 </style>

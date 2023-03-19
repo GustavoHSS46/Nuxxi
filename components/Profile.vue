@@ -10,7 +10,6 @@
                     </div>
                 </div>
             </Transition>
-
             <Transition name="fade" appear v-else>
                 <button @click="Login()">
                     <h2>login</h2>
@@ -60,6 +59,8 @@ function Login() {
 
 .loading {
     color: #44af69 !important;
+    height: 100%;
+    width: 100%;
 }
 
 .mainProfile {

@@ -4,32 +4,53 @@
             <div class="profile">
                 <Profile />
             </div>
-            <div class="shopping">
-                <Icon name="ph:shopping-bag" size="3rem" />
-            </div>
-            <div class="search">
-                <Icon name="material-symbols:search-sharp" size="3rem" />
-            </div>
+            <NuxtLink to="/">
+                <div class="home" :style="{'color': Homecolor}">
+                    <Icon name="material-symbols:home-outline-sharp" size="3rem" />
+                </div>
+            </NuxtLink>
+            <NuxtLink to="/cart" :style="{'color': Cartcolor}">
+                <div class="shopping">
+                    <Icon name="ph:shopping-bag" size="3rem" />
+                </div>
+            </NuxtLink>
+            <NuxtLink to="/search">
+                <div class="search" :style="{'color': color}">
+                    <Icon name="material-symbols:search-sharp" size="3rem" />
+                </div>
+            </NuxtLink>
         </div>
     </div>
 </template>
 
-<script setup>
-
+<script>
+export default {
+    props: {
+        Homecolor: String,
+        Cartcolor: String,
+    }
+}
 </script>
 
 <style scoped>
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .container {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: flex-start;
-    padding: 0px 8px 8px 8px;
+
+    border: 2px solid red;
 }
 
 .menuContent {
     width: 100%;
-    height: 100%;
+    height: 10vh;
+    margin: 0px 8px 8px 8px;
     background-color: #b3b3b3;
 
     display: flex;
@@ -40,7 +61,7 @@
     border-radius: 18px;
 }
 
-.menuContent > * {
+.menuContent> * {
     height: 100%;
     width: 20%;
 
