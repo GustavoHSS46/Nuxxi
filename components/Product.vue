@@ -1,6 +1,6 @@
 <template>
     <div class="containerProduct">
-        <div class="item" v-for="product in Products">
+        <div @click="navigate(product.id)" class="item" v-for="product in Products" :key="product.id">
             <div class="img">
                 <img :src="product.poster" alt="">
             </div>
@@ -34,7 +34,7 @@ export default {
                 .then((snapshot) => {
                     let Products = [];
                     snapshot.docs.forEach((doc) => {
-                        Products.push({ ...doc.data(), stars: doc.data().stars })
+                        Products.push({ ...doc.data(), id: doc.id, stars: doc.data().stars })
                     })
                     this.Products = Products;
                 })
@@ -42,6 +42,11 @@ export default {
                     console.log(err);
                 });
         },
+
+        navigate(id) {
+            this.$nuxt.$router.push({ path:`/products/${this.type}/${id}`, })
+        }
+
     },
     created() {
         this.gettinBooks();
@@ -55,6 +60,7 @@ export default {
     height: 100%;
     width: 100%;
 
+
     overflow: auto;
     white-space: nowrap;
     overflow-y: hidden;
@@ -67,7 +73,7 @@ export default {
 
 .item {
     height: 80%;
-    min-width: 50%;
+    width: 50%;
 
     display: flex;
     justify-content: center;
@@ -75,6 +81,10 @@ export default {
     flex-direction: column;
 
     padding-bottom: 15px;
+}
+
+.nigga {
+    border: 2px solid black;
 }
 
 .red {

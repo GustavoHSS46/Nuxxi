@@ -28,7 +28,7 @@ function Home() {
 }
 .logo {
     letter-spacing: 1.5px;
-    color: rgb(68, 175, 105);
+    color: #44af69;
     user-select: none;
     cursor: pointer;
 }
