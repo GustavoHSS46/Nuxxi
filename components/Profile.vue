@@ -10,11 +10,9 @@
                     </div>
                 </div>
             </Transition>
-            <Transition name="fade" appear v-else>
-                <button @click="Login()">
-                    <h2>login</h2>
-                </button>
-            </Transition>
+            <button @click="Login()"  v-else  v-warning="false">
+                <h2>login</h2>
+            </button>
         </div>
     </div>
 </template>
@@ -22,15 +20,17 @@
 <script setup lang="ts">
 import { useStorage } from "@vueuse/core";
 import { useConexion } from '../stores/isConnect'
+
 const Conected = useConexion()
 Conected.connect()
+
+
+let photo = useStorage('profilePic', '').value
+let Show = useStorage('isConnected', false).value
+let Username = useStorage('name', '').value
+
 Conected.Loading()
 
-
-let Username = useStorage('name', '').value
-let photo = useStorage('profilePic', 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg').value
-
-let Show = useStorage('isConnected', false).value
 
 function Account() {
     navigateTo('/account')
@@ -147,6 +147,7 @@ button {
     .user {
         justify-content: center;
     }
+
     button {
         width: 100%;
         height: 60%;

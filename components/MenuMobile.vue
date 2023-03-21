@@ -44,21 +44,19 @@ a {
     display: flex;
     justify-content: flex-start;
 
-    border: 2px solid red;
 }
 
 .menuContent {
-    width: 100%;
-    height: 10vh;
-    margin: 0px 8px 8px 8px;
+    width: 100vw;
+    height: 8vh;
+    margin: 0;
+    padding: 0;
     background-color: #b3b3b3;
 
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: row-reverse;
-
-    border-radius: 18px;
 }
 
 .menuContent> * {

@@ -35,8 +35,10 @@
 .menuContainer {
     display: none;
     width: 100vw;
-    height: 10vh;
+    height: 8vh;
     background-color: none;
+    padding: 0;
+    margin: 0;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {

@@ -82,13 +82,8 @@ export default {
 
     padding-bottom: 15px;
 }
-
-.nigga {
-    border: 2px solid black;
-}
-
 .red {
-    color: red;
+    color: #A30B37;
 }
 
 .img {
