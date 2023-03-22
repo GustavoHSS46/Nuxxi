@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </Transition>
-            <button @click="Login()"  v-else  v-warning="false">
+            <button @click="Login()" v-else v-warning="false">
                 <h2>login</h2>
             </button>
         </div>
@@ -152,6 +152,11 @@ button {
         width: 100%;
         height: 60%;
         background-color: #44af69;
+    }
+
+    .icon {
+        height: 45px;
+        width: 45px;
     }
 }
 </style>
