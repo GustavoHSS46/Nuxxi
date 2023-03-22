@@ -8,20 +8,40 @@
             <h1>{{ product.title }}</h1>
             <div class="more">
                 <div>
-                    <h3>{{ product.pages }}</h3>
+                    <h3 v-if="product.pages">
+                        <Icon name="material-symbols:book-outline-rounded" /> {{ product.pages }}
+                    </h3>
+                    <h3 v-if="product.origin">
+                        <Icon name="ph:globe-stand-bold" /> {{ product.origin }}
+                    </h3>
                 </div>
                 <div>
-                    <h3>{{ product.language }}</h3>
+                    <h3 v-if="product.language">
+                        <Icon name="ph:globe-stand-bold" /> {{ product.language }}
+                    </h3>
+                    <h3 v-if="product.gender">
+                        <Icon name="ph:gender-female" /> {{ product.gender }}
+                    </h3>
                 </div>
                 <div>
-                    <h3>{{ product.editor }}</h3>
+                    <h3 v-if="product.editor">
+                        <Icon name="maki:city-11" /> {{ product.editor }}
+                    </h3>
+                    <h3 v-if="product.material">
+                        <Icon name="material-symbols:recycling" /> {{ product.material }}
+                    </h3>
                 </div>
                 <div>
-                    <h3>{{ product.author }}</h3>
+                    <h3 v-if="product.author">
+                        <Icon name="ic:baseline-person-2" /> {{ product.author }}
+                    </h3>
+                    <h3 v-if="product.brand">
+                        <Icon name="material-symbols:factory" /> {{ product.brand }}
+                    </h3>
                 </div>
             </div>
             <div class="star">
-                <div v-for="star in product.stars">
+                <div v-for="star in product.stars" :class="{ super: starColor }">
                     <Icon name="material-symbols:star" />
                 </div>
             </div>
@@ -48,7 +68,8 @@ export default {
         return {
             product: [],
             isLoading: true,
-            stars: 0
+            stars: 0,
+            starColor: false,
         };
     },
     created() {
@@ -60,7 +81,7 @@ export default {
                 this.stars = doc.data().stars
                 console.log(this.stars)
                 if (this.stars > 4) {
-                    console.log("stars")
+                    this.starColor = true
                 }
                 setTimeout(() => {
                     this.isLoading = false;
@@ -135,6 +156,7 @@ img {
     justify-content: space-between;
 }
 
+
 .more::after {
     content: '';
     position: absolute;
@@ -152,10 +174,6 @@ img {
     justify-content: center;
 
     margin-top: 10px;
-}
-
-.star svg {
-    font-size: 24px;
 }
 
 .red {
@@ -184,12 +202,12 @@ img {
     border-radius: 6px;
 }
 
-button h1 {
-    font-size: 24px;
-}
-
 .buy {
     background-color: #44af69;
+}
+
+.super {
+    color: #44af69;
 }
 
 .cart {
@@ -203,5 +221,20 @@ button h1 {
         left: 0;
         display: block;
     }
+
+    .star svg {
+        font-size: 24px;
+    }
+
+    .more h3 {
+        font-size: 14px;
+    }
+
+
+    button h1 {
+        font-size: 24px;
+    }
+
+
 }
 </style>

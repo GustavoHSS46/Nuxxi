@@ -44,7 +44,7 @@ export default {
         },
 
         navigate(id) {
-            this.$nuxt.$router.push({ path:`/products/${this.type}/${id}`, })
+            this.$nuxt.$router.push({ path: `/products/${this.type}/${id}`, })
         }
 
     },
@@ -56,6 +56,19 @@ export default {
 
 
 <style scoped>
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+::-webkit-scrollbar-track {
+    background: #00000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00000000;
+}
+
+
 .containerProduct {
     height: 100%;
     width: 100%;
@@ -82,6 +95,7 @@ export default {
 
     padding-bottom: 15px;
 }
+
 .red {
     color: #A30B37;
 }
