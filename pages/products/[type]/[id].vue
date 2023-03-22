@@ -72,10 +72,10 @@ export default {
             starColor: false,
         };
     },
-    created() {
+    async created() {
         const db = getFirestore()
         const docRef = doc(db, this.$route.params.type, this.$route.params.id);
-        getDoc(docRef)
+        await getDoc(docRef)
             .then((doc) => {
                 this.product = doc.data();
                 this.stars = doc.data().stars
