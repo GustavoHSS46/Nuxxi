@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </Transition>
-            <button @click="Login()" v-else v-warning="false">
+            <button @click="Login()" v-else>
                 <h2>login</h2>
             </button>
         </div>
