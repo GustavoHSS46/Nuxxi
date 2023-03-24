@@ -2,7 +2,7 @@
     <div class="container">
         <div class="menuContent">
             <div class="profile">
-                <Profile />
+                <ProfileMenuMobile />
             </div>
             <NuxtLink to="/">
                 <div class="home">

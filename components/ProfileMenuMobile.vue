@@ -138,4 +138,25 @@ button {
     transform: translateY(30px);
     opacity: 0;
 }
+
+@media screen and (max-width: 767px) {
+    .inner {
+        display: none;
+    }
+
+    .user {
+        justify-content: center;
+    }
+
+    button {
+        width: 100%;
+        height: 60%;
+        background-color: #44af69;
+    }
+
+    .icon {
+        height: 45px;
+        width: 45px;
+    }
+}
 </style>
