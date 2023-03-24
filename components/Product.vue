@@ -80,8 +80,6 @@ export default {
 
     display: flex;
     align-items: center;
-
-    gap: 95px;
 }
 
 .item {
@@ -101,8 +99,17 @@ export default {
 }
 
 .img {
-    min-height: 60%;
-    min-width: 100%;
+    height: 60%;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    object-fit: contain;
 }
 
 .star {
@@ -118,12 +125,7 @@ export default {
     font-size: 24px;
 }
 
-img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    border-radius: 6px;
-}
+
 
 @media screen and (max-width: 767px) {
     .containerProduct {
