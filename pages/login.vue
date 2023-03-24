@@ -23,9 +23,7 @@
                     </NuxtLink>
                 </div>
                 <div class="icons">
-                    <Icon name="logos:google-icon" size="3rem" />
-                    <Icon name="logos:facebook" size="3rem" />
-                    <Icon name="radix-icons:github-logo" size="3rem" />
+                    <Icon name="logos:google-icon" size="3rem" @click="google()"/>
                 </div>
             </form>
         </div>
@@ -33,7 +31,7 @@
 </template>
 
 <script setup>
-import { getAuth, signInWithEmailAndPassword  } from "firebase/auth"
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { useConexion } from '../stores/isConnect.client'
 
 
@@ -101,6 +99,15 @@ const singIn = () => {
                         text: 'Try again',
                     })
             }
+        })
+}
+
+function google() {
+    const provider = new GoogleAuthProvider()
+    signInWithPopup(getAuth(), provider)
+        .then((result) => {
+            console.log(result.user)
+            navigateTo("/")
         })
 }
 </script>

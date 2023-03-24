@@ -19,7 +19,7 @@ defineProps({
     justify-content: center;
 
 
-    height: 55%;
+    height: 60vh;
     width: 100%;
 
     padding: 0;

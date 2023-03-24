@@ -32,11 +32,7 @@
                     </NuxtLink>
                 </div>
                 <div class="icons">
-                    <Icon name="logos:google-icon" size="3rem" />
-                    <Icon name="logos:facebook" size="3rem" />
-                    <div class="invert">
-                        <Icon name="radix-icons:github-logo" size="3rem" />
-                    </div>
+                    <Icon name="logos:google-icon" size="3rem" @click="google()"/>
                 </div>
             </form>
         </div>
@@ -131,6 +127,15 @@ const register = () => {
                 }
             })
     }
+}
+
+function google() {
+    const provider = new GoogleAuthProvider()
+    signInWithPopup(getAuth(), provider)
+        .then((result) => {
+            console.log(result.user)
+            navigateTo("/")
+        })
 }
 </script>
 
