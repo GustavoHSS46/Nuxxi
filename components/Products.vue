@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h2>{{title}}</h2>
-        <Product :type="title"/>
+        <Product :type="title" class="row"/>
     </div>
 </template>
 
@@ -24,6 +24,12 @@ defineProps({
 
     padding: 0;
     overflow: hidden;
+}
+
+.row {
+    padding-top: 20px;
+
+    height: 100%;
 }
 
 </style>

@@ -9,7 +9,7 @@
         <Products title="Shoes" />
     </div>
     <div class="menuContainer">
-        <MenuMobile Homecolor="#44af69" Cartcolor="black"/>
+        <MenuMobile/>
     </div>
 </template>
 

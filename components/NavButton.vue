@@ -1,7 +1,6 @@
 <template>
     <div class="iconsDesktop">
         <div class="profile">
-            <Profile />
         </div>
         <div class="icons">
             <Icon name="material-symbols:search-sharp" size="3rem" />

@@ -3,7 +3,7 @@
         <div @click="Home()" class="logo">
             <h1>Nuxxi</h1>
         </div>
-        <NavButton/>
+        <NavButton />
     </div>
 </template>
 
@@ -26,6 +26,7 @@ function Home() {
     align-items: center;
     justify-content: space-between;
 }
+
 .logo {
     letter-spacing: 1.5px;
     color: #44af69;
@@ -40,7 +41,7 @@ function Home() {
     }
 }
 
-@media screen and (max-width: 767px)  {
+@media screen and (max-width: 767px) {
     .nav {
         height: 3%;
     }

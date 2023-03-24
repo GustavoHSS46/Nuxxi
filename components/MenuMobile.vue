@@ -2,20 +2,19 @@
     <div class="container">
         <div class="menuContent">
             <div class="profile">
-                <Profile />
             </div>
             <NuxtLink to="/">
-                <div class="home" :style="{'color': Homecolor}">
+                <div class="home">
                     <Icon name="material-symbols:home-outline-sharp" />
                 </div>
             </NuxtLink>
-            <NuxtLink to="/cart" :style="{'color': Cartcolor}">
+            <NuxtLink to="/cart">
                 <div class="shopping">
                     <Icon name="ph:shopping-bag" />
                 </div>
             </NuxtLink>
             <NuxtLink to="/search">
-                <div class="search" :style="{'color': color}">
+                <div class="search" >
                     <Icon name="material-symbols:search-sharp" />
                 </div>
             </NuxtLink>
@@ -23,13 +22,7 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        Homecolor: String,
-        Cartcolor: String,
-    }
-}
+<script setup>
 </script>
 
 <style scoped>

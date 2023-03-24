@@ -34,7 +34,7 @@
 
 <script setup>
 import { getAuth, signInWithEmailAndPassword  } from "firebase/auth"
-import { useConexion } from '../stores/isConnect'
+import { useConexion } from '../stores/isConnect.client'
 
 
 const Conected = useConexion()

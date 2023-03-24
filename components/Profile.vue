@@ -19,23 +19,16 @@
 
 <script setup lang="ts">
 import { useStorage } from "@vueuse/core";
-import { useConexion } from '../stores/isConnect'
-
+import { useConexion } from '../stores/isConnect.client'
 const Conected = useConexion()
 Conected.connect()
-
-
-let photo = useStorage('profilePic', '').value
-let Show = useStorage('isConnected', false).value
-let Username = useStorage('name', '').value
-
 Conected.Loading()
-
-
+let Username = useStorage('name', '').value
+let photo = useStorage('profilePic', 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg').value
+let Show = useStorage('isConnected', false).value
 function Account() {
     navigateTo('/account')
 }
-
 function Login() {
     navigateTo('/login')
 }

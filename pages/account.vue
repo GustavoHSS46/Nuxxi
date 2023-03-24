@@ -5,30 +5,30 @@
         <div v-else class="userFetch">
             <div v-if="Show" class="main">
                 <div class="profile">
-                    <div @click="logOut()" class="user">
-                        <div class="userIMG">
-                            <img :src="photoURL" alt="">
-                        </div>
-                        <div class="name">
-                            <h2>{{ Username }}</h2>
-                        </div>
-                    </div>
+                    <Profile />
                 </div>
             </div>
             <h1 v-else>Are you connected?</h1>
         </div>
     </div>
+    <div class="menuContainer">
+        <MenuMobile/>
+    </div>
 </template>
 
 <script setup lang="ts">
 import { useStorage } from "@vueuse/core";
-import { useConexion } from '../stores/isConnect'
+import { useConexion } from '../stores/isConnect.client'
 
 const Conected = useConexion()
 Conected.connect()
-let photoURL = useStorage('profilePic', 'https://media.ipassio.com/media/blog/benefits-of-solving-rubiks-cube/blog_icon/benefits-of-solving-rubiks-cube.jpg')
-let Username = useStorage('name', '')
-let Show = useStorage('isConnected', false)
+
+
+let photo = useStorage('profilePic', '').value
+let Show = useStorage('isConnected', false).value
+let Username = useStorage('name', '').value
+
+Conected.Loading()
 
 
 function logOut() {
@@ -39,27 +39,20 @@ function logOut() {
 
 <style scoped>
 .contentMain {
-    height: 100%;
-    width: 100%;;
+    height: 100vh;
+    width: 100%;
 
     position: relative;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-self: center;
+
+    border: 2px solid red;
 }
 .profile {
-    padding-top: 15px;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
+    border: 2px solid green;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    height: 25%;
 }
 
 .user {
@@ -83,7 +76,6 @@ function logOut() {
 .userIMG {
     width: 100px;
     height: 100px;
-    margin-right: 2%;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -99,5 +91,23 @@ function logOut() {
     height: 50%;
     width: 50%;
     border: 2px solid red;
+}
+
+.menuContainer {
+    display: none;
+    width: 100vw;
+    height: 8vh;
+    background-color: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+    .menuContainer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        display: block;
+    }
 }
 </style>

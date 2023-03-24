@@ -22,6 +22,9 @@
                     <h3 v-if="product.gender">
                         <Icon name="ph:gender-female" /> {{ product.gender }}
                     </h3>
+                    <h3 v-if="product.chip">
+                        <Icon name="ph:globe-stand-bold" /> {{ product.chip }}
+                    </h3>
                 </div>
                 <div>
                     <h3 v-if="product.editor">
@@ -29,6 +32,9 @@
                     </h3>
                     <h3 v-if="product.material">
                         <Icon name="material-symbols:recycling" /> {{ product.material }}
+                    </h3>
+                    <h3 v-if="product.weight">
+                        <Icon name="material-symbols:recycling" /> {{ product.weight }} Gramas
                     </h3>
                 </div>
                 <div>
@@ -57,7 +63,7 @@
         </div>
     </div>
     <div class="menuContainer">
-        <MenuMobile Homecolor="black" Cartcolor="black" />
+        <MenuMobile/>
     </div>
 </template>
 

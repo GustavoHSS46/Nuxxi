@@ -85,7 +85,7 @@ export default {
 }
 
 .item {
-    height: 80%;
+    height: 100%;
     width: 50%;
 
     display: flex;
@@ -122,6 +122,7 @@ img {
     height: 100%;
     width: 100%;
     object-fit: contain;
+    border-radius: 6px;
 }
 
 @media screen and (max-width: 767px) {
