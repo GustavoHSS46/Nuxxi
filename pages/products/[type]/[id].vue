@@ -2,7 +2,6 @@
     <Navbar />
     <div class="contentMain">
         <ProductsDetails />
-        <Products :title="this.route" />
         <Comments />
     </div>
     <div class="menuContainer">
