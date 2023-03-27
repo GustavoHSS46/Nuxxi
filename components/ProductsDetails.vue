@@ -68,7 +68,7 @@
                 <Icon name="ic:baseline-assignment-return" />
             </div>
             <div class="ship">
-                <Icon name="mdi:truck-fast"/>
+                <Icon name="mdi:truck-fast" />
             </div>
         </div>
     </div>
@@ -76,6 +76,8 @@
 
 <script>
 import { getFirestore, getDoc, doc } from "firebase/firestore";
+import { useRoute } from 'vue-router';
+
 export default {
     data() {
         return {
@@ -83,11 +85,15 @@ export default {
             isLoading: true,
             stars: 0,
             starColor: false,
+            id: '',
+            type: '',
         };
     },
     async created() {
         const db = getFirestore()
-        const docRef = doc(db, this.$route.params.type, this.$route.params.id);
+        this.type = useRoute().params.type;
+        this.id = useRoute().params.id;
+        const docRef = doc(db, this.type, this.id);
         await getDoc(docRef)
             .then((doc) => {
                 this.product = doc.data();

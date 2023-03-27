@@ -31,10 +31,15 @@
     </div>
 </template>
 
-<script setup lang="ts">
-function navigate(id: any) {
-    navigateTo({ path: `/section/category/${id}`})
-}
+<script>
+export default {
+    methods: {
+        navigate(id) {
+            navigateTo({ path: `/section/category/${id}`,})
+        }
+
+    },
+};
 </script>
 
 <style scoped>
