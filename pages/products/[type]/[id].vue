@@ -14,6 +14,7 @@
 import { useRoute } from 'vue-router';
 
 const route = useRoute().params.type;
+console.log(route);
 </script>
 <style scoped>
 .contentMain {
