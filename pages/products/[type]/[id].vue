@@ -2,7 +2,7 @@
     <Navbar />
     <div class="contentMain">
         <ProductsDetails />
-        <Products :title="this.route" />
+        <h1>SKDJKFSJDF</h1>
         <Comments />
     </div>
     <div class="menuContainer">
@@ -14,6 +14,7 @@
 import { useRoute } from 'vue-router';
 
 const route = useRoute().params.type;
+console.log(route);
 </script>
 <style scoped>
 .contentMain {

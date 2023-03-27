@@ -93,6 +93,7 @@ export default {
         const db = getFirestore()
         this.type = useRoute().params.type;
         this.id = useRoute().params.id;
+        console.log(this.type +" "+ this.id)
         const docRef = doc(db, this.type, this.id);
         await getDoc(docRef)
             .then((doc) => {
