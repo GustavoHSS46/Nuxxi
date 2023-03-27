@@ -1,13 +1,13 @@
 <template>
     <div class="content">
         <div class="cardsContainer">
-            <div class="card red">
+            <div class="card red" @click="navigate('Smartphones')">
                 <div class="boxImg">
                     <img src="../assest/smartphones.png" alt="">
                 </div>
                 <h3>Smartphones</h3>
             </div>
-            <div class="card yellow">
+            <div class="card yellow" @click="navigate('Shoes')">
                 <div class="boxImg">
                     <img src="../assest/Sneakers.png" alt="">
                 </div>
@@ -15,13 +15,13 @@
             </div>
         </div>
         <div class="cardsContainer">
-            <div class="card green">
+            <div class="card green" @click="navigate('Games')">
                 <div class="boxImg">
                     <img src="../assest/videoGames.png" alt="">
                 </div>
                 <h3>Video Games</h3>
             </div>
-            <div class="card blue">
+            <div class="card blue" @click="navigate('Books')">
                 <div class="boxImg">
                     <img src="../assest/books.png" alt="">
                 </div>
@@ -32,11 +32,12 @@
 </template>
 
 <script setup lang="ts">
-
+function navigate(id: any) {
+    navigateTo({ path: `/section/category/${id}`, })
+}
 </script>
 
 <style scoped>
-
 img {
     filter: invert(100%);
 }

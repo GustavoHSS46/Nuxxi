@@ -18,7 +18,6 @@ defineProps({
     flex-direction: column;
     justify-content: center;
 
-
     height: 60vh;
     width: 100%;
 

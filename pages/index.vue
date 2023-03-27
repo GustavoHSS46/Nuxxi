@@ -4,7 +4,7 @@
         <CardCarrosel class="carrosel" />
         <Cards />
         <Products title="Books" />
-        <Products title="videoGames" />
+        <Products title="Games" />
         <Products title="Smartphones" />
         <Products title="Shoes" />
     </div>

@@ -1,9 +1,8 @@
 <template>
     <Navbar />
-    <div class="contentMain">
-        <ProductsDetails />
-        <Products :title="this.$route.params.type" />
-        <Comments />
+    <div class="containerSection">
+        <h1>{{ this.$route.params.section }}</h1>
+        <ProductsSection :type="this.$route.params.section"/>
     </div>
     <div class="menuContainer">
         <MenuMobile />
@@ -11,21 +10,27 @@
 </template>
 
 <script>
+
 </script>
 
 <style scoped>
-.contentMain {
-    height: 100%;
-    width: 100%;
 
-    overflow: hidden;
-
-    gap: 5px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+::-webkit-scrollbar {
+    width: 1px;
 }
+
+::-webkit-scrollbar-track {
+    background: #00000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00000000;
+}
+
+.containerSection {
+    text-align: center;
+}
+
 .menuContainer {
     display: none;
     width: 100vw;
