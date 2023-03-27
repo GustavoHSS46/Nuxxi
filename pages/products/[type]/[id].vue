@@ -2,6 +2,7 @@
     <Navbar />
     <div class="contentMain">
         <ProductsDetails />
+        <Navbar />
         <Comments />
     </div>
     <div class="menuContainer">
