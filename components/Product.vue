@@ -44,7 +44,7 @@ export default {
         },
 
         navigate(id) {
-            this.$nuxt.$router.push({ path: `/products/${this.type}/${id}`, })
+            navigateTo({ path: `/products/${this.type}/${id}`, })
         }
 
     },

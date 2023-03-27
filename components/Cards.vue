@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 function navigate(id: any) {
-    navigateTo({ path: `/section/category/${id}`, })
+    navigateTo({ path: `/section/category/${id}`})
 }
 </script>
 

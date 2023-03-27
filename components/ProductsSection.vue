@@ -37,7 +37,6 @@ export default {
                         Products.push({ ...doc.data(), id: doc.id, stars: doc.data().stars })
                     })
                     this.Products = Products;
-                    console.log("section  "+this.type)
                 })
                 .catch((err) => {
                     console.log(err);
@@ -45,7 +44,7 @@ export default {
         },
 
         navigate(id) {
-            this.$nuxt.$router.push({ path: `/products/${this.type}/${id}`, })
+            navigateTo({ path: `/products/${this.type}/${id}`})
         }
 
     },
