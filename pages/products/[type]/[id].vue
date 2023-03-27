@@ -2,7 +2,7 @@
     <Navbar />
     <div class="contentMain">
         <ProductsDetails />
-        <Products :title="this.$route.params.type" />
+        <Products :title="this.route" />
         <Comments />
     </div>
     <div class="menuContainer">
@@ -10,9 +10,11 @@
     </div>
 </template>
 
-<script>
-</script>
+<script setup>
+import { useRoute } from 'vue-router';
 
+const route = useRoute().params.type;
+</script>
 <style scoped>
 .contentMain {
     height: 100%;

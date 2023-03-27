@@ -1,20 +1,21 @@
 <template>
     <Navbar />
     <div class="containerSection">
-        <h1>{{ this.$route.params.section }}</h1>
-        <ProductsSection :type="this.$route.params.section"/>
+        <h1>{{ route }}</h1>
+        <ProductsSection :type="route" />
     </div>
     <div class="menuContainer">
         <MenuMobile />
     </div>
 </template>
 
-<script>
+<script setup>
+import { useRoute } from 'vue-router';
 
+const route = useRoute().params.section;
 </script>
 
 <style scoped>
-
 ::-webkit-scrollbar {
     width: 1px;
 }
@@ -49,6 +50,7 @@
         left: 0;
         display: block;
     }
+
     .contentMain {
         height: 210vh;
     }
