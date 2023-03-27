@@ -44,7 +44,7 @@ export default {
         },
 
         navigate(id) {
-            navigateTo({ path: `/products/${this.type}/${id}`, })
+            navigateTo(`/products/${this.type}/${id}`)
         }
 
     },
