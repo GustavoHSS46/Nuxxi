@@ -18,16 +18,23 @@
 </template>
 
 <script setup lang="ts">
-import { useStorage } from "@vueuse/core";
+import { getAuth } from "firebase/auth";
 import { useConexion } from '../stores/isConnect.client'
 
 const Conected = useConexion()
 Conected.connect()
 
+let photo = ''
+let Show = false
+let Username = ''
 
-let photo = useStorage('profilePic', '').value
-let Show = useStorage('isConnected', false).value
-let Username = useStorage('name', '').value
+const auth = getAuth();
+const user = auth.currentUser;
+if (user) {
+    Username = user.displayName!
+    photo = user.photoURL!
+    Show = true
+}
 
 Conected.Loading()
 

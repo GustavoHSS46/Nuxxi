@@ -3,6 +3,7 @@
     <div>
         <h1>search</h1>
     </div>
+    <Footer />
     <div class="menuContainer">
         <MenuMobile/>
     </div>

@@ -4,15 +4,25 @@
         <Icon v-if="Conected.isLoading" class="loading" name="svg-spinners:180-ring" />
         <div v-else class="userFetch">
             <div v-if="Show" class="main">
-                <div class="profile">
-                    <Profile />
+                <div class="more">
+                    <div class="profile">
+                        <ProfileAccount />
+                    </div>
+                    <div class="edit" @click="edit()">
+                        <h1>Edit</h1>
+                        <Icon name="ic:round-keyboard-arrow-right" />
+                    </div>
+                </div>
+                <div class="logout">
+                    <Logout />
                 </div>
             </div>
             <h1 v-else>Are you connected?</h1>
         </div>
     </div>
+    <Footer />
     <div class="menuContainer">
-        <MenuMobile/>
+        <MenuMobile />
     </div>
 </template>
 
@@ -22,37 +32,59 @@ import { useConexion } from '../stores/isConnect.client'
 
 const Conected = useConexion()
 Conected.connect()
-
-
-let photo = useStorage('profilePic', '').value
 let Show = useStorage('isConnected', false).value
-let Username = useStorage('name', '').value
 
 Conected.Loading()
 
-
-function logOut() {
-    navigateTo('/login')
+function edit() {
+    navigateTo('/edit')
 }
 
 </script>
 
 <style scoped>
 .contentMain {
-    height: 100vh;
+    height: 80vh;
     width: 100%;
 
     position: relative;
 
+    text-align: center;
+
     display: flex;
     flex-direction: column;
+    
 
-    border: 2px solid red;
+    padding: 2vh;
 }
+
 .profile {
-    border: 2px solid green;
     width: 100%;
-    height: 25%;
+    height: 10vh;
+}
+
+.logout {
+    width: 100%;
+}
+
+.edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+}
+
+.edit svg {
+    font-size: 40px;
+}
+
+.main {
+    height: 75vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .user {
@@ -65,7 +97,8 @@ function logOut() {
     height: 20%;
     cursor: pointer;
 }
-.name{
+
+.name {
     width: 80%;
     height: 100%;
 
@@ -73,12 +106,14 @@ function logOut() {
     align-items: center;
     justify-content: left;
 }
+
 .userIMG {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     overflow: hidden;
 }
+
 .user img {
     width: 100%;
     height: 100%;

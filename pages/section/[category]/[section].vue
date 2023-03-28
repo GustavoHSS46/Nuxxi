@@ -4,6 +4,8 @@
         <h1>{{ route }}</h1>
         <ProductsSection :type="route" />
     </div>
+    <Footer />
+
     <div class="menuContainer">
         <MenuMobile />
     </div>

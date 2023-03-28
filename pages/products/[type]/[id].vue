@@ -4,6 +4,7 @@
         <ProductsDetails />
         <Comments />
     </div>
+    <Footer />
     <div class="menuContainer">
         <MenuMobile />
     </div>
