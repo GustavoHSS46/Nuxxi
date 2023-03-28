@@ -23,7 +23,7 @@
                     </NuxtLink>
                 </div>
                 <div class="icons">
-                    <Icon name="logos:google-icon" size="3rem" @click="google()"/>
+                    <Icon name="logos:google-icon" size="3rem" @click="google()" />
                 </div>
             </form>
         </div>
@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { getAuth, setPersistence, inMemoryPersistence, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { useConexion } from '../stores/isConnect.client'
 
 
@@ -45,70 +45,76 @@ const email = ref("")
 
 
 const singIn = () => {
-    signInWithEmailAndPassword(getAuth(), email.value, password.value)
-        .then(() => {
-            const user = getAuth().currentUser;
-            let name = user.displayName
+    setPersistence(getAuth(), inMemoryPersistence).then(() => {
+        return signInWithEmailAndPassword(getAuth(), email.value, password.value)
+            .then(() => {
+                const user = getAuth().currentUser;
+                let name = user.displayName
 
-            $swal.fire({
-                title: "Welcome " + name,
-                icon: 'success',
-                text: 'We are happy to see you again',
-                confirmButtonColor: '#44AF69',
-                confirmButtonText: 'Go to Home',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    return navigateTo('/')
+                $swal.fire({
+                    title: "Welcome " + name,
+                    icon: 'success',
+                    text: 'We are happy to see you again',
+                    confirmButtonColor: '#44AF69',
+                    confirmButtonText: 'Go to Home',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        return navigateTo('/')
+                    }
+                })
+            }).catch((err) => {
+                console.log(err)
+                switch (err.code) {
+                    case "auth/invalid-email":
+                        $swal.fire({
+                            title: 'Invalid email',
+                            icon: 'error',
+                            text: 'Try again',
+                        })
+                        break
+                    case "auth/user-disabled":
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'User disabled',
+                            text: 'Try again',
+                        })
+                        break
+                    case "auth/user-not-found":
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'User not found',
+                            text: 'Try again',
+                        })
+                        break
+                    case "auth/wrong-password":
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'Wrong password',
+                            text: 'Try again',
+                        })
+                        break
+                    default:
+                        $swal.fire({
+                            icon: 'error',
+                            title: 'Something wrong',
+                            text: 'Try again',
+                        })
                 }
             })
-        }).catch((err) => {
-            console.log(err)
-            switch (err.code) {
-                case "auth/invalid-email":
-                    $swal.fire({
-                        title: 'Invalid email',
-                        icon: 'error',
-                        text: 'Try again',
-                    })
-                    break
-                case "auth/user-disabled":
-                    $swal.fire({
-                        icon: 'error',
-                        title: 'User disabled',
-                        text: 'Try again',
-                    })
-                    break
-                case "auth/user-not-found":
-                    $swal.fire({
-                        icon: 'error',
-                        title: 'User not found',
-                        text: 'Try again',
-                    })
-                    break
-                case "auth/wrong-password":
-                    $swal.fire({
-                        icon: 'error',
-                        title: 'Wrong password',
-                        text: 'Try again',
-                    })
-                    break
-                default:
-                    $swal.fire({
-                        icon: 'error',
-                        title: 'Something wrong',
-                        text: 'Try again',
-                    })
-            }
-        })
+    })
+
 }
 
 function google() {
     const provider = new GoogleAuthProvider()
-    signInWithPopup(getAuth(), provider)
-        .then((result) => {
-            console.log(result.user)
-            navigateTo("/")
-        })
+    setPersistence(getAuth(), inMemoryPersistence).then(() => {
+        return signInWithPopup(getAuth(), provider)
+            .then((result) => {
+                console.log(result.user)
+                navigateTo("/")
+            })
+    })
+
 }
 </script>
 

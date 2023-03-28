@@ -8,6 +8,7 @@
         <Products title="Smartphones" />
         <Products title="Shoes" />
     </div>
+    <Footer />
     <div class="menuContainer">
         <MenuMobile/>
     </div>

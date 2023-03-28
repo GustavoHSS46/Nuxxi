@@ -10,15 +10,16 @@
                     </div>
                 </div>
             </Transition>
-            <button @click="Login()" v-else>
-                <h2>login</h2>
-            </button>
+            <div v-else>
+                <h2>you are not Conected</h2>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { getAuth } from "firebase/auth";
+import { useStorage } from "@vueuse/core";
 import { useConexion } from '../stores/isConnect.client'
 
 const Conected = useConexion()
@@ -30,11 +31,13 @@ let Username = ''
 
 const auth = getAuth();
 const user = auth.currentUser;
-if (user) {
-    Username = user.displayName!
-    photo = user.photoURL!
+if (getAuth().currentUser) {
+    console.log("logado")
     Show = true
+} else {
+    console.log("not logado")
 }
+
 Conected.Loading()
 
 
@@ -89,12 +92,15 @@ function Login() {
 .user {
     display: flex;
     align-items: center;
-    gap: 15px;
+    justify-content: left;
+    flex-direction: row-reverse;
+
     height: 100%;
-    cursor: pointer;
     width: 100%;
-    justify-content: right;
+
     gap: 25px;
+
+    cursor: pointer;
 }
 
 button {

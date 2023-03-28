@@ -3,6 +3,7 @@
     <div>
         <h1>cart</h1>
     </div>
+    <Footer />
     <div class="menuContainer">
         <MenuMobile/>
     </div>
